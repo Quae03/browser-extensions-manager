@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: hsl(200, 100%, 85%);
+  color: hsl(227, 75%, 14%);
+  margin: 0;
+}
+body main {
+  margin-top: 30px;
+  width: 80%;
+}
+body main header {
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+body main header img.mode {
+  background-color: #ccc;
+  border-radius: 15px;
+  padding: 10px;
+}
+body main header img.mode:hover {
+  cursor: pointer;
+}
+body main nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+body main nav h2 {
+  font-size: 24px;
+  margin: 0;
+  align-self: center;
+}
+body main nav .active-buttons {
+  display: flex;
+  justify-content: right;
+  gap: 3%;
+  width: 25%;
+}
+body main nav .active-buttons button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  color: hsl(227, 75%, 14%);
+  font-size: 1em;
+  padding: 10px 15px 10px;
+}
+body main .content {
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 10px;
+  margin-bottom: 100px;
+}
+body main .content div.extension {
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+body main .content div.extension div.extension-content {
+  display: flex;
+  gap: 1em;
+}
+body main .content div.extension div.extension-content h3, body main .content div.extension div.extension-content p {
+  margin: 0;
+}
+body main .content div.extension div.extension-btns {
+  display: flex;
+  justify-content: space-between;
+}
+body main .content div.extension div.extension-btns .remove-extension-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  color: hsl(227, 75%, 14%);
+  font-size: 14px;
+  padding: 8px;
+}
+body main .content div.extension div.extension-btns .remove-extension-btn:hover {
+  background-color: hsl(3, 71%, 56%);
+  border: 1px solid hsl(3, 71%, 56%);
+  color: #fff;
+  cursor: pointer;
+}
+body main .content div.extension div.extension-btns label.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+body main .content div.extension div.extension-btns label.switch span.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+body main .content div.extension div.extension-btns label.switch span.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+body main .content div.extension div.extension-btns label.switch input:checked + .slider {
+  background-color: hsl(3, 71%, 56%);
+}
+body main .content div.extension div.extension-btns label.switch input:checked + .slider:before {
+  transform: translateX(100%);
+}
+
+.act {
+  background-color: hsl(3, 71%, 56%);
+  color: #fff;
+  cursor: none;
+}/*# sourceMappingURL=styles.css.map */

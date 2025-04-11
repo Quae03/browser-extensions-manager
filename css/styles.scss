@@ -1,0 +1,150 @@
+$darkBlue: hsl(227, 75%, 14%);
+$red: hsl(3, 71%, 56%);
+$grey: #ccc;
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: hsl(200, 100%, 85%);
+    color: $darkBlue;
+    margin: 0;
+    main {
+        margin-top: 30px;
+        width: 80%;
+        header {
+            background-color: #fff;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 40px;
+            img.mode {
+                background-color: $grey;
+                border-radius: 15px;
+                padding: 10px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            h2 {
+                font-size: 24px;
+                margin: 0;
+                align-self: center;
+            }
+            .active-buttons {
+                display: flex;
+                justify-content: right;
+                gap: 3%;
+                width: 25%;
+                button {
+                    background-color: #fff;
+                    border: 1px solid $grey;
+                    border-radius: 18px;
+                    color: $darkBlue;
+                    font-size: 1em;
+                    padding: 10px 15px 10px;
+                }
+                // button:hover {
+                //     background-color: $red;
+                //     color: #fff;
+                //     cursor: pointer;
+                // }
+            }
+        }
+        .content {
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, auto);
+            gap: 10px;
+            margin-bottom: 100px;
+            div.extension {
+                background-color: #fff;
+                border-radius: 20px;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                gap: 20px;
+                overflow: hidden;
+                padding: 20px;
+                div.extension-content {
+                    display: flex;
+                    gap: 1em;
+                    h3, p {
+                        margin: 0;
+                    }
+                    img {
+                        
+                    }
+                }
+                div.extension-btns {
+                    display: flex;
+                    justify-content: space-between;
+                    .remove-extension-btn {
+                        background-color: #fff;
+                        border: 1px solid $grey;
+                        border-radius: 16px;
+                        color: $darkBlue;
+                        font-size: 14px;
+                        padding: 8px;
+                        &:hover {
+                            background-color: $red;
+                            border: 1px solid $red;
+                            color: #fff;
+                            cursor: pointer;
+                        }
+                    }
+                    label.switch {
+                        position: relative;
+                        display: inline-block;
+                        width: 60px;
+                        height: 34px;
+                        input {
+                            
+                        }
+                        span.slider {
+                            position: absolute;
+                            cursor: pointer;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: $grey;
+                            transition: 0.4s;
+                            border-radius: 30px;
+                            &:before {
+                                position: absolute;
+                                content: "";
+                                height: 26px;
+                                width: 26px;
+                                left: 4px;
+                                bottom: 4px;
+                                background-color: #fff;
+                                transition: 0.4s;
+                                border-radius: 50%;
+                            }
+                        }
+                        input:checked + .slider {
+                            background-color: $red;
+                        }
+                        input:checked + .slider:before {
+                            transform: translateX(100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.act {
+    background-color: $red;
+    color: #fff;
+    cursor: none;
+}
