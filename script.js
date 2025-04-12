@@ -100,10 +100,15 @@ const inactiveExtensionsBtn = document.getElementById('inactiveExtensionsBtn');
 let state = 'all';
 
 function generateContent() {
-    content.innerHTML = extensionsList.map((x)=> {
-        let {id, logo, name, description} = x;
+
+    content.innerHTML = extensionsList.map((ext)=> {
+        ext.isActive ? activeExtensions.push(ext) : inactiveExtensions.push(ext);
+        localStorage.setItem("activeExtensions", JSON.stringify(activeExtensions));
+        localStorage.setItem("inactiveExtensions", JSON.stringify(inactiveExtensions));
+        let {id, logo, name, description} = ext;
+
         if (state === 'all') {
-        allExtensions.push({id: x.id, name: x.name})
+            allExtensions.push({id: ext.id, isActive: ext.isActive});
         return `
             <div class="extension">
                 <div>
@@ -126,8 +131,17 @@ function generateContent() {
                 </div>
             </div>`
     }}).join("");
-    // localStorage.setItem()
+    activeExtensions.forEach((ext)=> {
+        let toggleSwitch = document.getElementById(`toggleSwitch${ext.id}`);
+        if (ext.isActive = true) {
+            toggleSwitch.click();
+        } else {
+            return;
+        }
+    })
 }
+
+generateContent();
 
 window.onload = ()=> {
     if (state === 'all') {
@@ -149,6 +163,44 @@ function activateBtn(event) {
         event.style.backgroundColor = 'hsl(3, 71%, 56%)';
         event.style.color = '#fff';
         event.style.cursor = 'default';
+
+        // Functionality
+        let activeExtensions = JSON.parse(localStorage.activeExtensions);
+        
+        content.innerHTML = activeExtensions.map((ext)=> {
+            
+            let {id, logo, name, description} = ext;
+    
+            return `
+                <div class="extension">
+                    <div>
+                        <div class="extension-content">
+                            <div>  
+                            <img src="${logo}">
+                            </div>
+                            <div>
+                            <h3>${name}</h3>
+                            <p>${description}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="${id}" class="extension-btns">
+                        <button class="remove-extension-btn">Remove</button>
+                        <label class="switch">
+                            <input onclick='toggle(${id})' type="checkbox" id="toggleSwitch${id}">
+                            <span id="slider${id}" class="slider"></span>
+                        </label>
+                    </div>
+                </div>`
+        }).join("");
+        activeExtensions.forEach((ext)=> {
+            let toggleSwitch = document.getElementById(`toggleSwitch${ext.id}`);
+            if (ext.isActive = true) {
+                toggleSwitch.click();
+            } else {
+                return;
+            }
+        })
     }
     if (state === 'inactive') {
         // Remove active styling from other buttons
@@ -161,6 +213,37 @@ function activateBtn(event) {
         event.style.backgroundColor = 'hsl(3, 71%, 56%)';
         event.style.color = '#fff';
         event.style.cursor = 'default';
+
+        // Functionality
+
+        let inactiveExtensions = JSON.parse(localStorage.inactiveExtensions);
+        
+        content.innerHTML = inactiveExtensions.map((ext)=> {
+            
+            let {id, logo, name, description} = ext;
+    
+            return `
+                <div class="extension">
+                    <div>
+                        <div class="extension-content">
+                            <div>  
+                            <img src="${logo}">
+                            </div>
+                            <div>
+                            <h3>${name}</h3>
+                            <p>${description}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="${id}" class="extension-btns">
+                        <button class="remove-extension-btn">Remove</button>
+                        <label class="switch">
+                            <input onclick='toggle(${id})' type="checkbox" id="toggleSwitch${id}">
+                            <span id="slider${id}" class="slider"></span>
+                        </label>
+                    </div>
+                </div>`
+        }).join("");
     }
     if (state === 'all') {
         activeExtensionsBtn.style.backgroundColor = '#fff';
@@ -172,20 +255,66 @@ function activateBtn(event) {
         event.style.backgroundColor = 'hsl(3, 71%, 56%)';
         event.style.color = '#fff';
         event.style.cursor = 'default';
+
+        // Functionality
+
+        content.innerHTML = extensionsList.map((ext)=> {
+           
+            let {id, logo, name, description} = ext;
+    
+            return `
+                <div class="extension">
+                    <div>
+                        <div class="extension-content">
+                            <div>  
+                            <img src="${logo}">
+                            </div>
+                            <div>
+                            <h3>${name}</h3>
+                            <p>${description}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="${id}" class="extension-btns">
+                        <button class="remove-extension-btn">Remove</button>
+                        <label class="switch">
+                            <input onclick='toggle(${id})' type="checkbox" id="toggleSwitch${id}">
+                            <span id="slider${id}" class="slider"></span>
+                        </label>
+                    </div>
+                </div>`
+        }).join("");
+        activeExtensions.forEach((ext)=> {
+            let toggleSwitch = document.getElementById(`toggleSwitch${ext.id}`);
+            if (ext.isActive = true) {
+                toggleSwitch.click();
+            } else {
+                return;
+            }
+        })
     }
 
 }
 
-generateContent();
-
 function toggle(id) {
     let toggleSwitch = document.getElementById(`toggleSwitch${id}`); 
-    // toggleSwitch.checked = true;
-    if (document.getElementById(`toggleSwitch${id}`).checked) {
-        console.log('lol')
+    search = extensionsList.find((ext)=> ext.id == id);
+
+    if (toggleSwitch.checked) {
+        inactiveExtensions = inactiveExtensions.filter((ext)=> ext.id !== id);
+        !activeExtensions.includes(search) ? activeExtensions.push(search) : "";
+        inactiveExtensions.length == 0 ? localStorage.removeItem("inactiveExtensions") : "";
+
+        localStorage.setItem("activeExtensions", JSON.stringify(activeExtensions));
+        localStorage.setItem("inactiveExtensions", JSON.stringify(inactiveExtensions));
+
+        
+    } else {
+        activeExtensions = activeExtensions.filter((ext)=> ext.id !== id);
+        inactiveExtensions.push(search);
+        activeExtensions.length == 0 ? localStorage.removeItem("activeExtensions") : "";
+
+        localStorage.setItem("activeExtensions", JSON.stringify(activeExtensions));
+        localStorage.setItem("inactiveExtensions", JSON.stringify(inactiveExtensions));
     }
-    // let search = allExtensions.find((x)=> x.id == id);
-    // activeExtensions.push(search);
-    // localStorage.setItem("activeExtensions", JSON.stringify(activeExtensions));
-    // console.log(localStorage);
 }
