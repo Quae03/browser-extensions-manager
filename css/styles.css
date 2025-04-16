@@ -36,21 +36,27 @@ body main nav h2 {
   margin: 0;
   align-self: center;
 }
-body main nav .active-buttons {
+body main nav .state-btns {
   display: flex;
   justify-content: right;
   gap: 3%;
   width: 25%;
 }
-body main nav .active-buttons button {
-  background-color: #fff;
+body main nav .state-btns button {
   border: 1px solid #ccc;
   border-radius: 18px;
-  color: hsl(227, 75%, 14%);
   font-size: 1em;
   padding: 10px 15px 10px;
 }
-body main .content {
+body main nav .state-btns .button {
+  background-color: #fff;
+  color: hsl(227, 75%, 14%);
+}
+body main nav .state-btns .active {
+  background-color: hsl(3, 71%, 56%);
+  color: #fff;
+}
+body main .extensions-container {
   border-radius: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -58,7 +64,7 @@ body main .content {
   gap: 10px;
   margin-bottom: 100px;
 }
-body main .content div.extension {
+body main .extensions-container div.extension {
   background-color: #fff;
   border-radius: 20px;
   display: flex;
@@ -68,18 +74,18 @@ body main .content div.extension {
   overflow: hidden;
   padding: 20px;
 }
-body main .content div.extension div.extension-content {
+body main .extensions-container div.extension div.extension-content {
   display: flex;
   gap: 1em;
 }
-body main .content div.extension div.extension-content h3, body main .content div.extension div.extension-content p {
+body main .extensions-container div.extension div.extension-content h3, body main .extensions-container div.extension div.extension-content p {
   margin: 0;
 }
-body main .content div.extension div.extension-btns {
+body main .extensions-container div.extension div.extension-btns {
   display: flex;
   justify-content: space-between;
 }
-body main .content div.extension div.extension-btns .remove-extension-btn {
+body main .extensions-container div.extension div.extension-btns .remove-extension-btn {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 16px;
@@ -87,19 +93,19 @@ body main .content div.extension div.extension-btns .remove-extension-btn {
   font-size: 14px;
   padding: 8px;
 }
-body main .content div.extension div.extension-btns .remove-extension-btn:hover {
+body main .extensions-container div.extension div.extension-btns .remove-extension-btn:hover {
   background-color: hsl(3, 71%, 56%);
   border: 1px solid hsl(3, 71%, 56%);
   color: #fff;
   cursor: pointer;
 }
-body main .content div.extension div.extension-btns label.switch {
+body main .extensions-container div.extension div.extension-btns label.switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 }
-body main .content div.extension div.extension-btns label.switch span.slider {
+body main .extensions-container div.extension div.extension-btns label.switch span.slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -110,7 +116,7 @@ body main .content div.extension div.extension-btns label.switch span.slider {
   transition: 0.4s;
   border-radius: 30px;
 }
-body main .content div.extension div.extension-btns label.switch span.slider:before {
+body main .extensions-container div.extension div.extension-btns label.switch span.slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -121,15 +127,9 @@ body main .content div.extension div.extension-btns label.switch span.slider:bef
   transition: 0.4s;
   border-radius: 50%;
 }
-body main .content div.extension div.extension-btns label.switch input:checked + .slider {
+body main .extensions-container div.extension div.extension-btns label.switch input:checked + .slider {
   background-color: hsl(3, 71%, 56%);
 }
-body main .content div.extension div.extension-btns label.switch input:checked + .slider:before {
+body main .extensions-container div.extension div.extension-btns label.switch input:checked + .slider:before {
   transform: translateX(100%);
-}
-
-.act {
-  background-color: hsl(3, 71%, 56%);
-  color: #fff;
-  cursor: none;
 }/*# sourceMappingURL=styles.css.map */
