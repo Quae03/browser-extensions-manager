@@ -192,7 +192,13 @@ function styleActiveBtn(button) {
 };
 
 function changeColorTheme() {
-    !document.querySelector('body').classList.contains('darkmode') ? document.querySelector('body').classList.add('darkmode') : document.querySelector('body').classList.remove('darkmode') ;
+    if (!document.querySelector('body').classList.contains('darkmode')) {
+        document.getElementById('themeSwitch').src = 'assets/images/icon-sun.svg';
+        document.querySelector('body').classList.add('darkmode');
+    } else {
+        document.getElementById('themeSwitch').src = 'assets/images/icon-moon.svg';
+        document.querySelector('body').classList.remove('darkmode');
+    }
 }
 
 document.getElementById('themeSwitch').addEventListener('click', ()=> {
