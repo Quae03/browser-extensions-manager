@@ -86,9 +86,18 @@ let nestedJSONData = `[
   ]`;
 
 let extensions = JSON.parse(nestedJSONData); // Convert JSON
-let activeExts = [];
-let inactiveExts = [];
 
+let storedExts;
+console.log(storedExts)
+if (localStorage.getItem("extensions") == undefined) {
+    localStorage.setItem("extensions", JSON.stringify(extensions));
+    storedExts = JSON.parse(localStorage.extensions);
+} else {
+    storedExts = JSON.parse(localStorage.extensions);
+}
+
+// localStorage.getItem("activeExts") == null ? localStorage.setItem("activeExts", JSON.stringify(activeExts)) : localStorage.getItem("activeExts");
+// localStorage.getItem("inactiveExts") == null ? localStorage.setItem("inactiveExts", JSON.stringify(inactiveExts)) : localStorage.getItem("inactiveExts");
 
 // HTML element references
 const allExtsBtn = document.getElementById('allExtsBtn');
@@ -116,7 +125,6 @@ function generateExtensions(list) {
             </div>   
         </div>
         <div class="extension-btns">
-            <button class="remove-extension-btn">Remove</button>
             <label class="switch">
                 <input type="checkbox" ${ext.isActive ? 'checked' : ''}/>
                 <span class="slider"></span>
@@ -128,8 +136,10 @@ function generateExtensions(list) {
         const toggle = extDiv.querySelector('input[type="checkbox"]');
         toggle.addEventListener('change', ()=> {
             const id = parseInt(extDiv.dataset.id);
-            const currentExt = extensions.find((e)=> e.id === id);
+            const currentExt = storedExts.find((e)=> e.id === id);
             currentExt.isActive = toggle.checked;
+
+            localStorage.setItem("extensions", JSON.stringify(storedExts));
             console.log(`Toggle ${currentExt.name} to ${currentExt.isActive}`);
         });
 
@@ -137,33 +147,33 @@ function generateExtensions(list) {
     });
 }
 
-generateExtensions(extensions);
+generateExtensions(storedExts);
 
 allExtsBtn.addEventListener('click', (e)=> {
     // Add styling to the all button
     styleActiveBtn(e.target.id);
 
-    generateExtensions(extensions);
+    generateExtensions(storedExts);
 });
 
 activeExtsBtn.addEventListener('click', (e)=> {
-    // Add styling to the all button
+    // Add styling to the active button
     styleActiveBtn(e.target.id);
 
-    activeExts = extensions.filter(ext=> ext.isActive);
+    let activeExts = storedExts.filter(ext=> ext.isActive);
+    // let currentActiveExts = localStorage.setItem("activeExts", JSON.stringify(activeExts));
     generateExtensions(activeExts);
 });
 
 inactiveExtsBtn.addEventListener('click', (e)=> {
-    // Add styling to the all button
+    // Add styling to the inactive button
     styleActiveBtn(e.target.id);
 
-    inactiveExts = extensions.filter(ext=> !ext.isActive);
+    let inactiveExts = storedExts.filter(ext=> !ext.isActive);
     generateExtensions(inactiveExts);
 });
 
 window.addEventListener('DOMContentLoaded', ()=> {
-    generateExtensions(extensions);
     allExtsBtn.click();
 });
 
@@ -180,3 +190,11 @@ function styleActiveBtn(button) {
         btn.classList ? btn.classList.add('button') : ""; // Add default styling to inactive buttons
     });
 };
+
+function changeColorTheme() {
+    !document.querySelector('body').classList.contains('darkmode') ? document.querySelector('body').classList.add('darkmode') : document.querySelector('body').classList.remove('darkmode') ;
+}
+
+document.getElementById('themeSwitch').addEventListener('click', ()=> {
+    changeColorTheme()
+});

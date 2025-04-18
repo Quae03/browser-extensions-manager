@@ -1,28 +1,55 @@
-$darkBlue: hsl(227, 75%, 14%);
-$red: hsl(3, 71%, 56%);
-$grey: #ccc;
-
+:root {
+    --base-background-color: hsl(200, 100%, 85%);
+    --content-background-color: #fff;
+    --mode-switch-slider-background-color: #cccccc;
+    --btn-hover-background-color: hsl(3, 71%, 56%);
+    --text-color: hsl(227, 75%, 14%);
+    --btn-text-color: #fff;
+    --selected-slider-color: hsl(3, 71%, 56%);
+}
+.darkmode {
+    --base-background-color: hsl(226, 25%, 17%);
+    --content-background-color: hsl(226, 11%, 37%);
+    --mode-switch-slider-background-color: #fff;
+    --btn-hover-background-color: #fff;
+    --text-color: #fff;
+    --btn-text-color: #000;
+    --selected-slider-color: hsl(3, 71%, 56%);
+}
+body, h2, button {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    flex-direction: column;
+}
 body {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    background-color: hsl(200, 100%, 85%);
-    color: $darkBlue;
+    background-color: var(--base-background-color);
+    color: var(--text-color);
+    font-weight: 500;
     margin: 0;
     main {
         margin-top: 30px;
         width: 80%;
         header {
-            background-color: #fff;
+            background-color: var(--content-background-color);
             border-radius: 20px;
             display: flex;
             justify-content: space-between;
+            @media (max-width: 310px) {
+                flex-direction: column;
+                align-items: center;
+            }
             padding: 10px;
             margin-bottom: 40px;
             img.mode {
-                background-color: $grey;
+                background-color: var(--mode-switch-slider-background-color);
                 border-radius: 15px;
                 padding: 10px;
+                @media (max-width: 310px) {
+                    width: 20%;
+                }
                 &:hover {
                     cursor: pointer;
                 }
@@ -30,37 +57,44 @@ body {
         }
         nav {
             display: flex;
+            @media (max-width: 520px) {
+                flex-direction: column;
+            }
+            font-weight: 800;
             justify-content: space-between;
             margin-bottom: 30px;
             h2 {
                 font-size: 24px;
+                font-weight: 800;
                 margin: 0;
+                @media (max-width: 520px) {
+                    align-self: auto;
+                }
                 align-self: center;
             }
             .state-btns {
                 display: flex;
+                @media (max-width: 520px) {
+                    justify-content: start;
+                }
                 justify-content: right;
                 gap: 3%;
                 width: 25%;
                 button {
-                    border: 1px solid $grey;
+                    border: 1px solid #ccc;
                     border-radius: 18px;
                     font-size: 1em;
                     padding: 10px 15px 10px;
                 }
                 .button {
-                    background-color: #fff;
-                    color: $darkBlue;
+                    background-color: var(--content-background-color);
+                    color: var(--text-color);
+                    font-weight: 800;
                 }
                 .active {
-                    background-color: $red;                    
-                    color: #fff;
+                    background-color: var(--btn-hover-background-color);                    
+                    color: var(--btn-text-color);
                 }
-                // button:hover {
-                //     background-color: $red;
-                //     color: #fff;
-                //     cursor: pointer;
-                // }
             }
         }
         .extensions-container {
@@ -68,10 +102,16 @@ body {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, auto);
+            @media (max-width: 960px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @media (max-width: 630px) {
+                grid-template-columns: 1fr;
+            }
             gap: 10px;
             margin-bottom: 100px;
             div.extension {
-                background-color: #fff;
+                background-color: var(--content-background-color);
                 border-radius: 20px;
                 display: flex;
                 justify-content: center;
@@ -81,28 +121,34 @@ body {
                 padding: 20px;
                 div.extension-content {
                     display: flex;
+                    @media (max-width: 310px) {
+                        display: block;
+                    }
                     gap: 1em;
                     h3, p {
                         margin: 0;
+                    }
+                    h3 {
+                        font-weight: 800;
                     }
                 }
                 div.extension-btns {
                     display: flex;
                     justify-content: space-between;
-                    .remove-extension-btn {
-                        background-color: #fff;
-                        border: 1px solid $grey;
-                        border-radius: 16px;
-                        color: $darkBlue;
-                        font-size: 14px;
-                        padding: 8px;
-                        &:hover {
-                            background-color: $red;
-                            border: 1px solid $red;
-                            color: #fff;
-                            cursor: pointer;
-                        }
-                    }
+                    // .remove-extension-btn {
+                    //     background-color: #fff;
+                    //     border: 1px solid $grey;
+                    //     border-radius: 16px;
+                    //     color: $darkBlue;
+                    //     font-size: 14px;
+                    //     padding: 8px;
+                    //     &:hover {
+                    //         background-color: $red;
+                    //         border: 1px solid $red;
+                    //         color: #fff;
+                    //         cursor: pointer;
+                    //     }
+                    // }
                     label.switch {
                         position: relative;
                         display: inline-block;
@@ -115,7 +161,7 @@ body {
                             left: 0;
                             right: 0;
                             bottom: 0;
-                            background-color: $grey;
+                            background-color: var(--mode-switch-slider-background-color);
                             transition: 0.4s;
                             border-radius: 30px;
                             &:before {
@@ -125,13 +171,13 @@ body {
                                 width: 26px;
                                 left: 4px;
                                 bottom: 4px;
-                                background-color: #fff;
+                                background-color: var(--content-background-color);
                                 transition: 0.4s;
                                 border-radius: 50%;
                             }
                         }
                         input:checked + .slider {
-                            background-color: $red;
+                            background-color: var(--selected-slider-color);
                         }
                         input:checked + .slider:before {
                             transform: translateX(100%);

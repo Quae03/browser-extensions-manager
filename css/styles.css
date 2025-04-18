@@ -1,9 +1,36 @@
+:root {
+  --base-background-color: hsl(200, 100%, 85%);
+  --content-background-color: #fff;
+  --mode-switch-slider-background-color: #cccccc;
+  --btn-hover-background-color: hsl(3, 71%, 56%);
+  --text-color: hsl(227, 75%, 14%);
+  --btn-text-color: #fff;
+  --selected-slider-color: hsl(3, 71%, 56%);
+}
+
+.darkmode {
+  --base-background-color: hsl(226, 25%, 17%);
+  --content-background-color: hsl(226, 11%, 37%);
+  --mode-switch-slider-background-color: #fff;
+  --btn-hover-background-color: #fff;
+  --text-color: #fff;
+  --btn-text-color: #000;
+  --selected-slider-color: hsl(3, 71%, 56%);
+}
+
+body, h2, button {
+  font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  flex-direction: column;
+}
+
 body {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  background-color: hsl(200, 100%, 85%);
-  color: hsl(227, 75%, 14%);
+  background-color: var(--base-background-color);
+  color: var(--text-color);
+  font-weight: 500;
   margin: 0;
 }
 body main {
@@ -11,36 +38,64 @@ body main {
   width: 80%;
 }
 body main header {
-  background-color: #fff;
+  background-color: var(--content-background-color);
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 40px;
 }
+@media (max-width: 310px) {
+  body main header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 body main header img.mode {
-  background-color: #ccc;
+  background-color: var(--mode-switch-slider-background-color);
   border-radius: 15px;
   padding: 10px;
+}
+@media (max-width: 310px) {
+  body main header img.mode {
+    width: 20%;
+  }
 }
 body main header img.mode:hover {
   cursor: pointer;
 }
 body main nav {
   display: flex;
+  font-weight: 800;
   justify-content: space-between;
   margin-bottom: 30px;
 }
+@media (max-width: 520px) {
+  body main nav {
+    flex-direction: column;
+  }
+}
 body main nav h2 {
   font-size: 24px;
+  font-weight: 800;
   margin: 0;
   align-self: center;
+}
+@media (max-width: 520px) {
+  body main nav h2 {
+    align-self: auto;
+  }
 }
 body main nav .state-btns {
   display: flex;
   justify-content: right;
   gap: 3%;
   width: 25%;
+}
+@media (max-width: 520px) {
+  body main nav .state-btns {
+    justify-content: start;
+  }
 }
 body main nav .state-btns button {
   border: 1px solid #ccc;
@@ -49,12 +104,13 @@ body main nav .state-btns button {
   padding: 10px 15px 10px;
 }
 body main nav .state-btns .button {
-  background-color: #fff;
-  color: hsl(227, 75%, 14%);
+  background-color: var(--content-background-color);
+  color: var(--text-color);
+  font-weight: 800;
 }
 body main nav .state-btns .active {
-  background-color: hsl(3, 71%, 56%);
-  color: #fff;
+  background-color: var(--btn-hover-background-color);
+  color: var(--btn-text-color);
 }
 body main .extensions-container {
   border-radius: 20px;
@@ -64,8 +120,18 @@ body main .extensions-container {
   gap: 10px;
   margin-bottom: 100px;
 }
+@media (max-width: 960px) {
+  body main .extensions-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 630px) {
+  body main .extensions-container {
+    grid-template-columns: 1fr;
+  }
+}
 body main .extensions-container div.extension {
-  background-color: #fff;
+  background-color: var(--content-background-color);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -78,26 +144,20 @@ body main .extensions-container div.extension div.extension-content {
   display: flex;
   gap: 1em;
 }
+@media (max-width: 310px) {
+  body main .extensions-container div.extension div.extension-content {
+    display: block;
+  }
+}
 body main .extensions-container div.extension div.extension-content h3, body main .extensions-container div.extension div.extension-content p {
   margin: 0;
+}
+body main .extensions-container div.extension div.extension-content h3 {
+  font-weight: 800;
 }
 body main .extensions-container div.extension div.extension-btns {
   display: flex;
   justify-content: space-between;
-}
-body main .extensions-container div.extension div.extension-btns .remove-extension-btn {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  color: hsl(227, 75%, 14%);
-  font-size: 14px;
-  padding: 8px;
-}
-body main .extensions-container div.extension div.extension-btns .remove-extension-btn:hover {
-  background-color: hsl(3, 71%, 56%);
-  border: 1px solid hsl(3, 71%, 56%);
-  color: #fff;
-  cursor: pointer;
 }
 body main .extensions-container div.extension div.extension-btns label.switch {
   position: relative;
@@ -112,7 +172,7 @@ body main .extensions-container div.extension div.extension-btns label.switch sp
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--mode-switch-slider-background-color);
   transition: 0.4s;
   border-radius: 30px;
 }
@@ -123,12 +183,12 @@ body main .extensions-container div.extension div.extension-btns label.switch sp
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: #fff;
+  background-color: var(--content-background-color);
   transition: 0.4s;
   border-radius: 50%;
 }
 body main .extensions-container div.extension div.extension-btns label.switch input:checked + .slider {
-  background-color: hsl(3, 71%, 56%);
+  background-color: var(--selected-slider-color);
 }
 body main .extensions-container div.extension div.extension-btns label.switch input:checked + .slider:before {
   transform: translateX(100%);

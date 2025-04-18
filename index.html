@@ -10,17 +10,22 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" 
+rel="stylesheet">
+
 </head>
 <body>
 
   <main>
     <header>
       <img src="assets/images/logo.svg" alt="Logo image">
-      <img class="mode" src="assets/images/icon-moon.svg" alt="dark mode icon">
+      <img id="themeSwitch" class="mode" src="assets/images/icon-moon.svg" alt="dark mode icon">
     </header>
     <nav>
       <h2>Extensions List</h2>
-      <div id="stateBtns" class="state-btns">
+      <div class="state-btns">
         <button id="allExtsBtn" class="button">All</button>
         <button id="activeExtsBtn" class="button">Active</button>
         <button id="inactiveExtsBtn" class="button">Inactive</button>
